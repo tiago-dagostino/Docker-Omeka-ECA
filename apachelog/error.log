@@ -1,0 +1,21 @@
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.21.0.6. Set the 'ServerName' directive globally to suppress this message
+PHP Warning:  Cannot load module 'phalcon' because required module 'psr' is not loaded in Unknown on line 0
+[Sun Jan 05 02:01:23.697004 2020] [core:warn] [pid 10] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sun Jan 05 02:01:23.699239 2020] [mpm_prefork:notice] [pid 10] AH00163: Apache/2.4.29 (Ubuntu) configured -- resuming normal operations
+[Sun Jan 05 02:01:23.699265 2020] [core:notice] [pid 10] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.21.0.5. Set the 'ServerName' directive globally to suppress this message
+PHP Warning:  Cannot load module 'phalcon' because required module 'psr' is not loaded in Unknown on line 0
+[Sun Jan 05 02:02:47.647354 2020] [core:warn] [pid 10] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sun Jan 05 02:02:47.650123 2020] [mpm_prefork:notice] [pid 10] AH00163: Apache/2.4.29 (Ubuntu) configured -- resuming normal operations
+[Sun Jan 05 02:02:47.650152 2020] [core:notice] [pid 10] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+[Sun Jan 05 02:07:16.122760 2020] [php7:notice] [pid 13] [client 172.21.0.4:53662] Omeka fatal error: Connection refused.\n\nConfirm that the information in your db.ini file is correct., referer: http://jacobiano.ddnsgeek.com:8080/
+[Sun Jan 05 02:18:23.209109 2020] [mpm_prefork:notice] [pid 10] AH00169: caught SIGTERM, shutting down
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.21.0.5. Set the 'ServerName' directive globally to suppress this message
+PHP Warning:  Cannot load module 'phalcon' because required module 'psr' is not loaded in Unknown on line 0
+[Sun Jan 05 02:18:24.314837 2020] [mpm_prefork:notice] [pid 9] AH00163: Apache/2.4.29 (Ubuntu) configured -- resuming normal operations
+[Sun Jan 05 02:18:24.314911 2020] [core:notice] [pid 9] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.21.0.6. Set the 'ServerName' directive globally to suppress this message
+PHP Warning:  Cannot load module 'phalcon' because required module 'psr' is not loaded in Unknown on line 0
+[Sun Jan 05 02:21:49.109852 2020] [core:warn] [pid 10] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sun Jan 05 02:21:49.112213 2020] [mpm_prefork:notice] [pid 10] AH00163: Apache/2.4.29 (Ubuntu) configured -- resuming normal operations
+[Sun Jan 05 02:21:49.112240 2020] [core:notice] [pid 10] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'

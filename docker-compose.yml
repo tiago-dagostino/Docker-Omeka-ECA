@@ -1,0 +1,117 @@
+version: '3' 
+
+services:
+
+  proxy:
+    image: djhamo/proxy
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+    container_name: omeka-proxy
+    networks:
+      - omeka_network
+    ports:
+      - 8080:80
+      - 8443:443
+    volumes:
+      - ./proxy/conf.d:/etc/nginx/conf.d:rw
+      - ./proxy/vhost.d:/etc/nginx/vhost.d:rw
+      - ./proxy/html:/usr/share/nginx/html:rw
+      - ./proxy/certs:/etc/nginx/certs:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_PROTO=https
+  
+  letsencrypt:
+    image: djhamo/letsencrypt
+    container_name: omeka-letsencrypt
+    depends_on:
+      - proxy
+    networks:
+      - omeka_network
+    volumes:
+      - ./proxy/certs:/etc/nginx/certs:rw
+      - ./proxy/vhost.d:/etc/nginx/vhost.d:rw
+      - ./proxy/html:/usr/share/nginx/html:rw
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+
+  db:
+    image: djhamo/mariadb
+    container_name: omeka-mariadb
+    networks:
+      - omeka_network
+    volumes:
+      - db:/var/lib/mysql
+      - ./log/mysql:/var/log/mariadb
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=251x2mdlltfd
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_DATABASE=omeka_db
+      - MYSQL_USER=omeka
+    restart: unless-stopped
+    
+  omeka:
+    image: djhamo/omeka-eca
+    container_name: omeka
+    networks:
+      - omeka_network
+    restart: unless-stopped  
+    volumes:
+      - ./html:/var/www/html/
+      - ./apachelog:/var/log/apache2
+    depends_on:
+      - letsencrypt
+      - proxy
+      - db      
+    environment:
+      - VIRTUAL_HOST=jacobiano.ddnsgeek.com
+      #- VIRTUAL_PROTO=https
+      - LETSENCRYPT_HOST=jacobiano.ddnsgeek.com
+      - LETSENCRYPT_EMAIL=djhamo@gmail.com
+
+  loris:
+    image: djhamo/loris-eca:1
+    container_name: loris-eca
+    networks:
+      - omeka_network
+    restart: unless-stopped  
+    volumes:
+      - ./html/omeka/files/fullsize:/usr/local/share/images
+    depends_on:
+      - letsencrypt
+      - proxy
+      - db 
+      - omeka  
+    ports:
+      - 5004:5004
+
+  phpmyadmin:
+    image: djhamo/phpmyadmin
+    container_name: omeka-phpmyadmin
+    networks:
+      - omeka_network
+    depends_on:
+      - db
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=251x2mdlltfd
+      - MYSQL_ROOT_PASSWORD=251x2mdlltfd
+      - MYSQL_USER=omeka
+      - MYSQL_PASSWORD=mysql
+      - VIRTUAL_HOST=phpmyadmin.jacobiano.ddnsgeek.com
+      - LETSENCRYPT_HOST=phpmyadmin.jacobiano.ddnsgeek.com
+    volumes: 
+      - /sessions
+    restart: unless-stopped
+
+volumes:
+  db:
+
+networks:
+  omeka_network:
