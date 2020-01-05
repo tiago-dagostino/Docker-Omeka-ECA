@@ -19,3 +19,8 @@ PHP Warning:  Cannot load module 'phalcon' because required module 'psr' is not 
 [Sun Jan 05 02:21:49.109852 2020] [core:warn] [pid 10] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
 [Sun Jan 05 02:21:49.112213 2020] [mpm_prefork:notice] [pid 10] AH00163: Apache/2.4.29 (Ubuntu) configured -- resuming normal operations
 [Sun Jan 05 02:21:49.112240 2020] [core:notice] [pid 10] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.21.0.6. Set the 'ServerName' directive globally to suppress this message
+PHP Warning:  Cannot load module 'phalcon' because required module 'psr' is not loaded in Unknown on line 0
+[Sun Jan 05 02:56:13.101521 2020] [core:warn] [pid 9] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sun Jan 05 02:56:13.104551 2020] [mpm_prefork:notice] [pid 9] AH00163: Apache/2.4.29 (Ubuntu) configured -- resuming normal operations
+[Sun Jan 05 02:56:13.104571 2020] [core:notice] [pid 9] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
